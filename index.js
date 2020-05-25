@@ -43,10 +43,12 @@ catch(error){
     return res.status(400).json({type:'error',message: error.message});
 }
 transactionPool.setTransaction(transaction);
-console.log('transactionPool', transactionPool);
 res.json({type:'success',transaction});
-})
+});
 
+app.get('/api/transaction-pool-map',(req,res)=>{
+    res.json(transactionPool.transactionMap)}
+);
 const syncChains = ()=>{
     request({url: `${ROOT_NODE_ADDRESS}/api/blocks`}, (error, response, body) => {
         if(!error && response.statusCode === 200) 
