@@ -39,9 +39,6 @@ class PubSub {
         return;
 
     }
-    if(channel === CHANNELS.BLOCKCHAIN){
-      
-    }
 }
 
   subscribeToChannels(){
