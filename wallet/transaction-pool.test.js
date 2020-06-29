@@ -60,9 +60,6 @@ describe('validTransactions()',()=>{
         }
     })
     it('returns valid transaction',()=>{
-        print("1");
-        print("1");
-
         expect(transactionPool.validTransactions()).toEqual(validTransactions);
     })
 })
