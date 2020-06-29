@@ -63,6 +63,4 @@ describe('validTransactions()',()=>{
         expect(transactionPool.validTransactions()).toEqual(validTransactions);
     })
 })
-
-
 })
