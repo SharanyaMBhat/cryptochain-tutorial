@@ -36,13 +36,18 @@ static isValidChain(chain){
   return true;
   }
 
-replaceChain(chain, onSuccess){
+replaceChain(chain, validateTransactions, onSuccess){
    if(chain.length <= this.chain.length){
     console.error('New chain should be longer');
     return;
    }   
    if(!Blockchain.isValidChain(chain)){
     console.error('New chain should be valid');
+       return;
+   }
+
+   if(validateTransactions && !this.validTransactionData({chain})){
+       console.error('The incoming chain has invalid data')
        return;
    }
 
