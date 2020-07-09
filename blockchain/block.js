@@ -42,7 +42,5 @@ this.difficulty = difficulty;
     return new this({  timestamp, nonce, difficulty, lastHash, data, hash});
     }
 }
- 
-      
-
+  
 module.exports = Block;
