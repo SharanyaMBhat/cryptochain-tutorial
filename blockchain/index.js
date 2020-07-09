@@ -55,6 +55,8 @@ replaceChain(chain, onSuccess){
   validTransactionData({chain}){
       for(let i = 1; i<chain.length; i++){
           const block = chain[i];
+          const transactionSet = new Set();
+        
           let rewardTransactionCount = 0;
 
           for(let transaction of block.data){
@@ -85,6 +87,14 @@ replaceChain(chain, onSuccess){
                 if(transaction.input.amount !== trueBalance){
                     console.error('Invalid input amount')
                     return false
+                }
+
+                if(transactionSet.has(transaction)){
+                    console.error('duplicate transaction')
+                    return false;
+                }
+                else {
+                    transactionSet.add(transaction)
                 }
             }
           }
