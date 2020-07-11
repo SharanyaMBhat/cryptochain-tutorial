@@ -5,7 +5,7 @@ const Blockchain = require('./blockchain');
 const PubSub = require('./app/pubsub');
 const TransactionPool = require('./wallet/transaction-pool');
 const TransactionMiner = require('./app/transaction-miner')
-
+const path = require('path')
 const Wallet = require('./wallet')
 
 const app  = express();
@@ -71,6 +71,10 @@ app.get('/api/wallet-info',(req,res)=>{
             address
         })
     })
+})
+
+app.get('*',(req,res)=>{
+res.sendFile(path.join(__dirname, './client/index.html'));
 })
 
 const syncWithRootState = ()=>{
