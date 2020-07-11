@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-
+import Blocks from './Blocks';
 
 class App extends Component {
 
@@ -19,10 +19,12 @@ class App extends Component {
                  <div>
                      Address: {address}
                  </div>
-
+                <br/>
                  <div>
                      Balance: {balance}
                  </div>
+                 <br/>
+                 <Blocks/>
              </div>
 
 
