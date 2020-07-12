@@ -1,14 +1,26 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Transaction from './Transaction'
-
+import {Button } from 'react-bootstrap'
+import history from '../history'
 const POLL_INTERVAL_MS = 10000;
 
 class TransactionPool extends Component{
 state={
     transactionPoolMap: {}
 }
-
+fetchMineTransactions = () =>{
+    fetch(`${document.location.origin}/api/mine-transactions`)
+    .then(response => {
+        if(response.status === 200 ) 
+        {alert('success');
+        history.push('/blocks')}
+        else {
+            alert('The mine-transactions block request did not complete.')
+        }
+})
+     
+}
 fetchTransactionPoolMap = () =>{
     fetch(`${document.location.origin}/api/transaction-pool-map`)
     .then(response => response.json())
@@ -47,6 +59,8 @@ render(){
                 }
             )
         }
+        <hr/>
+        <Button bsStyle="danger" onClick={this.fetchMineTransactions}> Mine Transactions </Button>
         </div>
     )
 }
