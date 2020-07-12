@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {FormGroup, FormControl, Button} from 'react-bootstrap'
  
 import {Link} from 'react-router-dom' 
+import history from '../history'
 
 class ConductTransaction extends Component{
 
@@ -27,7 +28,8 @@ class ConductTransaction extends Component{
             body:JSON.stringify({recipient,amount})
         }).then(response=>response.json())
         .then(json=>{
-            alert(json.message || json.type)
+            alert(json.message || json.type);
+            history.push('./transaction-pool');
         })
 
 
