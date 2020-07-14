@@ -4,12 +4,12 @@ const bodyParser = require('body-parser');
 const Blockchain = require('./blockchain');
 const PubSub = require('./app/pubsub');
 const TransactionPool = require('./wallet/transaction-pool');
-const TransactionMiner = require('./app/transaction-miner')
-const path = require('path')
-const Wallet = require('./wallet')
+const TransactionMiner = require('./app/transaction-miner');
+const path = require('path');
+const Wallet = require('./wallet');
 
-const isDevelopment = process.env.NODE_ENV === 'development'
-const REDIS_URL = isDevelopment? 
+const isDevelopment = process.env.NODE_ENV === 'development';
+const REDIS_URL = isDevelopment ? 
 'redis://127.0.0.1:6379':
 'redis://h:pb498ffc022199cae080ef472c9b44ed11982f0877cb03e0b77497c7f928e03ad@ec2-34-236-54-188.compute-1.amazonaws.com:20469';
 const DEFAULT_PORT = 3000;
@@ -109,8 +109,6 @@ console.log('replace chain on a async with', rootChain);
 if(isDevelopment)
 {
 
-
-
 const generateWalletTransaction = ({wallet, recipient, amount}) =>{
     const transaction = wallet.createTransaction({
         recipient,amount,chain:blockchain.chain
@@ -118,7 +116,6 @@ const generateWalletTransaction = ({wallet, recipient, amount}) =>{
 
     transactionPool.setTransaction(transaction);
 }
-
 
 const walletAction = ()=> generateWalletTransaction({
     wallet,recipient:walletFoo.publicKey, amount:5
