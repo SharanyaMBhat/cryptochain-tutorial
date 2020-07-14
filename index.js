@@ -8,7 +8,7 @@ const TransactionMiner = require('./app/transaction-miner');
 const path = require('path');
 const Wallet = require('./wallet');
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.ENV === 'development';
 const REDIS_URL = isDevelopment ? 
 'redis://127.0.0.1:6379':
 'redis://h:pb498ffc022199cae080ef472c9b44ed11982f0877cb03e0b77497c7f928e03ad@ec2-34-236-54-188.compute-1.amazonaws.com:20469';
@@ -21,7 +21,7 @@ const transactionPool = new TransactionPool();
 const wallet = new Wallet();
 const walletFoo = new Wallet();
 const walletBar = new Wallet();
-const pubsub = new PubSub({blockchain, transactionPool, redisurl: REDIS_URL});
+const pubsub = new PubSub({blockchain, transactionPool, redisUrl: REDIS_URL});
 const transactionMiner = new TransactionMiner({blockchain,transactionPool,wallet,pubsub});
 
 app.use(bodyParser.json());
@@ -153,6 +153,7 @@ if(process.env.GENERATE_PEER_PORT === 'true'){
 }
 const PORT = process.env.PORT || PEER_PORT || DEFAULT_PORT;
 app.listen(PORT,()=>{
+    console.log("Is development:"+isDevelopment);
     console.log(`listening at localhost:${PORT}`);
     if(PORT!== DEFAULT_PORT){
     syncWithRootState();
