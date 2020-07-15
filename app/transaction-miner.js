@@ -12,22 +12,29 @@ constructor({blockchain,transactionPool, wallet, pubsub}){
 mineTransactions(){
 
     //get transaction pool's valid transaction
-    const validTransactions = this.transactionPool.validTransactions();
+    const validTransactions = this.transactionPool.validTransactions(); 
 
-    //generate miner's reward
-    validTransactions.push(
-    Transaction.rewardTransaction({minerWallet: this.wallet})
-    );
+    if(this.transactionPool.validTransactions().length!==0)
+    {
+        //generate miner's reward
+        validTransactions.push(
+        Transaction.rewardTransaction({minerWallet: this.wallet})
+        );
 
-    //add block of transactions to BC
-    this.blockchain.addBlock({data: validTransactions})
+        //add block of transactions to BC
+        this.blockchain.addBlock({data: validTransactions})
 
-    //broadcast updated BC
-    this.pubsub.broadcastChain();
+        //broadcast updated BC
+        this.pubsub.broadcastChain();
 
-    //clear the pool
-    this.transactionPool.clear();
+        //clear the pool
+        this.transactionPool.clear();
     }
+    else {
+        alert("No transactions available to mine")
+    }
+   
+}
 }
 
 module.exports = TransactionMiner;
