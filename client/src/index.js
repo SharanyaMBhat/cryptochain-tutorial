@@ -8,16 +8,13 @@ import ConductTransaction from './components/ConductTransaction'
 import './index.css'
 import TransactionPool from './components/TransactionPool';
 render(
-   <div>
      <Router history={history}>
         <Switch>
           <Route exact path='/' component={App}/>
           <Route path='/blocks' component={Blocks}/>
           <Route path='/conduct-transaction' component={ConductTransaction}/>
           <Route path='/transaction-pool' component={TransactionPool}/>
-
         </Switch>
-   </Router>
-   </div>,
+   </Router>,
     document.getElementById('root')
     );
