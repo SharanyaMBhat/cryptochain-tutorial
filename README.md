@@ -24,13 +24,5 @@ B. Create peer node/s: npm run dev-peer [make note of the port-number]
 C. Hit localhost:3000 (for root node) and localhost:{port-number} (for peer node) in browser
   
 D. View blocks, create transactions, view transactions and mine transactions
-
-**Sample deployed app**
-
-A small blockchain with two nodes:
-
-Node 1: https://invulnerable-bastille-74349.herokuapp.com/
-
-Node 2: https://shielded-escarpment-97114.herokuapp.com/
   
   
